@@ -41,7 +41,7 @@ public class Utility {
     public static String formatTemperature(Context context, double temperature) {
         // Data stored in Celsius by default.  If user prefers to see in Fahrenheit, convert
         // the values here.
-        String suffix = "\u00B0";
+        //String suffix = "\u00B0";
         if (!isMetric(context)) {
             temperature = (temperature * 1.8) + 32;
         }
@@ -50,10 +50,11 @@ public class Utility {
         return String.format(context.getString(R.string.format_temperature), temperature);
     }
 
+    /* Never Used
     static String formatDate(long dateInMilliseconds) {
         Date date = new Date(dateInMilliseconds);
         return DateFormat.getDateInstance().format(date);
-    }
+    }*/
 
     // Format used for storing dates in the database.  ALso used for converting those strings
     // back into date objects for comparison/processing.
@@ -85,10 +86,8 @@ public class Utility {
         if (julianDay == currentJulianDay) {
             String today = context.getString(R.string.today);
             int formatId = R.string.format_full_friendly_date;
-            return String.format(context.getString(
-                    formatId,
-                    today,
-                    getFormattedMonthDay(context, dateInMillis)));
+            return context.getString(formatId, today,
+                    getFormattedMonthDay(context, dateInMillis));
         } else if ( julianDay < currentJulianDay + 7 ) {
             // If the input date is less than a week in the future, just return the day name.
             return getDayName(context, dateInMillis);
@@ -105,7 +104,7 @@ public class Utility {
      *
      * @param context Context to use for resource localization
      * @param dateInMillis The date in milliseconds
-     * @return
+     * @return the name of the day
      */
     public static String getDayName(Context context, long dateInMillis) {
         // If the date is today, return the localized version of "Today" instead of the actual

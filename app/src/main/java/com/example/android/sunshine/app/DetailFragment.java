@@ -42,7 +42,6 @@ import com.example.android.sunshine.app.data.WeatherContract.WeatherEntry;
  */
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String LOG_TAG = DetailFragment.class.getSimpleName();
     static final String DETAIL_URI = "URI";
 
     private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
@@ -71,7 +70,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     // These indices are tied to DETAIL_COLUMNS.  If DETAIL_COLUMNS changes, these
     // must change.
-    public static final int COL_WEATHER_ID = 0;
+    //public static final int COL_WEATHER_ID = 0;
     public static final int COL_WEATHER_DATE = 1;
     public static final int COL_WEATHER_DESC = 2;
     public static final int COL_WEATHER_MAX_TEMP = 3;
@@ -154,8 +153,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         Uri uri = mUri;
         if (null != uri) {
             long date = WeatherContract.WeatherEntry.getDateFromUri(uri);
-            Uri updatedUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(newLocation, date);
-            mUri = updatedUri;
+            mUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(newLocation, date);
             getLoaderManager().restartLoader(DETAIL_LOADER, null, this);
         }
     }
@@ -201,7 +199,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             mIconView.setContentDescription(description);
 
             // Read high temperature from cursor and update view
-            boolean isMetric = Utility.isMetric(getActivity());
+            //boolean isMetric = Utility.isMetric(getActivity());
 
             double high = data.getDouble(COL_WEATHER_MAX_TEMP);
             String highString = Utility.formatTemperature(getActivity(), high);

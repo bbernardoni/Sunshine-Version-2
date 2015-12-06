@@ -104,7 +104,7 @@ public class ForecastAdapter extends CursorAdapter {
         viewHolder.iconView.setContentDescription(description);
 
         // Read user preference for metric or imperial temperature units
-        boolean isMetric = Utility.isMetric(context);
+        //boolean isMetric = Utility.isMetric(context);
 
         // Read high temperature from cursor
         double high = cursor.getDouble(ForecastFragment.COL_WEATHER_MAX_TEMP);

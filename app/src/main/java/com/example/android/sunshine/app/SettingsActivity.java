@@ -86,6 +86,7 @@ public class SettingsActivity extends PreferenceActivity
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public Intent getParentActivityIntent() {
+        assert super.getParentActivityIntent() != null;
         return super.getParentActivityIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
 }
