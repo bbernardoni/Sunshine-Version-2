@@ -88,9 +88,12 @@ public class Utility {
             int formatId = R.string.format_full_friendly_date;
             return context.getString(formatId, today,
                     getFormattedMonthDay(context, dateInMillis));
-        } else if ( julianDay < currentJulianDay + 7 ) {
+        } else if ( julianDay < currentJulianDay + 2 ) {
             // If the input date is less than a week in the future, just return the day name.
-            return getDayName(context, dateInMillis);
+            int formatId = R.string.format_full_friendly_date;
+            SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("MMM dd");
+            return context.getString(formatId, getDayName(context, dateInMillis),
+                    shortenedDateFormat.format(dateInMillis));
         } else {
             // Otherwise, use the form "Mon Jun 3"
             SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE MMM dd");
